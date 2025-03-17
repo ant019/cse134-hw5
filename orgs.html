@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Organizations - Alex's Portfolio</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function toggleMode() {
+            document.body.classList.toggle('light-mode');
+            if (document.body.classList.contains('light-mode')) {
+                localStorage.setItem('colorMode', 'light');
+            } else {
+                localStorage.setItem('colorMode', 'dark');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedColorMode = localStorage.getItem('colorMode');
+            if (savedColorMode === 'light') {
+                document.body.classList.add('light-mode');
+            } else {
+                document.body.classList.remove('light-mode');
+            }
+        });
+    </script>
+</head>
+<body>
+    <noscript>JavaScript is disabled or not available!
+        <style>
+            button{
+                display: none;
+            }
+        </style>
+    </noscript>
+    <header>
+        <hgroup>
+            <h1>Student Organizations</h1>
+            <button onclick="toggleMode()">Toggle Mode</button>
+        </hgroup>
+    </header>
+    <div class="container">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="projects.html">Projects</a>
+            <a href="orgs.html">Student Orgs</a>
+            <a href="contact.html">Contact Me</a>
+        </nav>
+        <main>
+            <section>
+                <h2>Organizations Involved In</h2>
+                <ul>
+                    <li>
+                        <h3>Project In A Box</h3>
+                        <p>A student organization whose primary purpose is to make hands-on projects more accessible to students of all ages.</p>
+                        <aside>
+                            <h4>San Diego Public Library</h4>
+                            <p>We collaborate with the San Diego Public Library to host outreach workshops for students from K-12 to learn from!</p>
+                        </aside>
+                    </li>
+                    <li>
+                        <h3>Video Game Development Club</h3>
+                        <p>A student organization that fosters interest in game development and helps students pursue a career in this field by providing workshops and panels.</p>
+                    </li>
+                </ul>
+            </section>
+        </main>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Alex's Portfolio. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Alex's Portfolio</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function toggleMode() {
+            document.body.classList.toggle('light-mode');
+            if (document.body.classList.contains('light-mode')) {
+                localStorage.setItem('colorMode', 'light');
+            } else {
+                localStorage.setItem('colorMode', 'dark');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedColorMode = localStorage.getItem('colorMode');
+            if (savedColorMode === 'light') {
+                document.body.classList.add('light-mode');
+            } else {
+                document.body.classList.remove('light-mode');
+            }
+        });
+    </script>
+</head>
+<body>
+    <noscript>JavaScript is disabled or not available!
+        <style>
+            button{
+                display: none;
+            }
+        </style>
+    </noscript>
+    <header>
+        <hgroup>
+            <h1>Alex's Portfolio</h1>
+            <button onclick="toggleMode()">Toggle Mode</button>
+        </hgroup>
+    </header>
+    <div class="container">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="projects.html">Projects</a>
+            <a href="orgs.html">Student Orgs</a>
+            <a href="contact.html">Contact Me</a>
+        </nav>
+        <main>
+            <section>
+                <h1>Welcome to my Portfolio!</h1>
+                <h2>Background</h2>
+                <blockquote>
+                    <p>"A dropout will beat a genius through hard work."</p>
+                    <cite>— Rock Lee(Naruto)</cite>
+                </blockquote>
+                <p>I am an undergraduate student studying computer science at UCSD.<br>
+                    I enjoy playing volleyball, going to the gym, watching anime, and playing games!</p>
+            </section>
+            
+            <section>
+                <h2>Interests</h2>
+                <ol>
+                    <li>Web Development</li>
+                    <li>Game Development</li>
+                    <li>Software Development</li>
+                    <li>Artificial Intelligence</li>
+                </ol>
+            </section>
+            
+            <section>
+                <h2>Skills</h2>
+                <p>My skills include:</p>
+                <ul>
+                    <li>Python</li> 
+                    <li>Java</li>
+                    <li>SQL</li>
+                    <li>C#</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Education</h2>
+                <ul>
+                    <li>Highschool Diploma - Bolsa Grande Highschool (2017 - 2021)</li>
+                    <li>Bachelor of Science in Computer Science - University of California, San Diego (2021 - Present)</li>
+                </ul>
+            </section>
+            
+            <section>
+                <h2>Courses</h2>
+                <ul>
+                    <li>Data Structures and Algorithms</li>
+                    <li>Database Principles</li>
+                    <li>Introduction to Machine Learning</li>
+                    <li>Computer Graphics</li>
+                    <li>Datascience in Practice</li>
+                    <li>Software Engineering</li>
+                    <li>Operating Systems</li>
+                    <li>Computer Security</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+    <footer>
+        <p>&copy; 2025 Alex's Portfolio. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Alex's Portfolio</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function toggleMode() {
+            document.body.classList.toggle('light-mode');
+            if (document.body.classList.contains('light-mode')) {
+                localStorage.setItem('colorMode', 'light');
+            } else {
+                localStorage.setItem('colorMode', 'dark');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedColorMode = localStorage.getItem('colorMode');
+            if (savedColorMode === 'light') {
+                document.body.classList.add('light-mode');  
+            } else {
+                document.body.classList.remove('light-mode');
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.querySelector('form');
+            const nameField = document.getElementById('name');
+            const emailField = document.getElementById('email');
+            const messageField = document.getElementById('message');
+            const errorMessage = document.getElementById('error-message');
+            const infoMessage = document.getElementById('info-message');
+            const formErrors = [];
+
+            const showError = (message) => {
+                errorMessage.textContent = message;
+                errorMessage.style.opacity = 1;
+                setTimeout(() => {
+                    errorMessage.style.opacity = 0;
+                }, 3000);
+            };
+
+            const validateField = (field, pattern, errorMsg) => {
+                field.addEventListener('input', () => {
+                    if (!pattern.test(field.value)) {
+                        field.setCustomValidity(errorMsg);
+                        showError(errorMsg);
+                        formErrors.push({ field: field.name, error: errorMsg });
+                    } else {
+                        field.setCustomValidity('');
+                    }
+                });
+            };
+
+            validateField(nameField, /^[A-Za-z\s]+$/, 'Name can only contain letters and spaces.');
+            validateField(emailField, /^[^\s@]+@[^\s@]+\.[^\s@]+$/, 'Please enter a valid email address.');
+            validateField(messageField, /^[A-Za-z0-9\s.,!?]+$/, 'Message can only contain letters, numbers, spaces, and .,!? characters.');
+
+            messageField.addEventListener('input', () => {
+                const remaining = 500 - messageField.value.length;
+                if (remaining < 0) {
+                    infoMessage.textContent = `You have exceeded the character limit by ${-remaining} characters.`;
+                    infoMessage.style.color = 'red';
+                } else if (remaining <= 10) {
+                    infoMessage.textContent = `You have ${remaining} characters left.`;
+                    infoMessage.style.color = 'orange';
+                } else {
+                    infoMessage.textContent = `You have ${remaining} characters left.`;
+                    infoMessage.style.color = 'green';
+                }
+            });
+
+            form.addEventListener('submit', (event) => {
+                errorMessage.textContent = '';
+                infoMessage.textContent = '';
+
+                if (!form.checkValidity()) {
+                    errorMessage.textContent = 'Please fill out all required fields correctly.';
+                    event.preventDefault();
+                } else {
+                    const formErrorsField = document.createElement('input');
+                    formErrorsField.type = 'hidden';
+                    formErrorsField.name = 'form-errors';
+                    formErrorsField.value = JSON.stringify(formErrors);
+                    form.appendChild(formErrorsField);
+                }
+            });
+
+            form.addEventListener('input', () => {
+                if (form.checkValidity()) {
+                    errorMessage.textContent = '';
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <noscript>JavaScript is disabled or not available!
+        <style>
+            header > button {
+                display: none;
+            }
+        </style>
+    </noscript>
+    <header>
+        <hgroup>
+            <h1>Contact Me</h1>
+            <button onclick="toggleMode()">Toggle Mode</button>
+        </hgroup>
+    </header>
+    <div class="container">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="projects.html">Projects</a>
+            <a href="orgs.html">Student Orgs</a>
+            <a href="contact.html">Contact Me</a>
+        </nav>
+        <main>
+            <form action="https://httpbin.org/post" method="post" novalidate>
+                <label for="name"><b>Name: </b><span style="color: rgb(255, 75, 75);">*</span></label>
+                <input type="text" id="name" name="name" minlength="2" maxlength="50" required>
+                
+                <label for="email"><b>Email: </b><span style="color: rgb(255, 75, 75);">*</span></label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="message"><b>Message: </b><span style="color: rgb(255, 75, 75);">*</span></label>
+                <textarea id="message" name="message" minlength="10" required></textarea>
+                
+                <input type="hidden" name="possible_bot" value="true">
+                
+                <button type="submit"><b>Submit</b></button>
+                
+                <output id="error-message" role="alert"></output>
+                <output id="info-message"></output>
+            </form>
+        </main>
+    </div>
+    <footer>
+        <p>&copy; 2025 Alex's Portfolio. All rights reserved.</p>
+    </footer>
+</body>
+</html>
