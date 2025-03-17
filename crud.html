@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CRUD Operations - Alex's Portfolio</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <script src="crud.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>CRUD Operations for Projects</h1>
+
+    </header>
+    <div class="container">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="projects.html">Projects</a>
+            <a href="orgs.html">Student Orgs</a>
+            <a href="contact.html">Contact Me</a>
+            <a href="crud.html">CRUD</a>
+        </nav>
+    <main>
+        <section>
+            <h2>Create/Update Project</h2>
+            <p>Create a new project using the form below. To update a project, use the same project title when filling out the form.</p>
+            <form id="project-form">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required><br>
+                
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required></textarea><br>
+                
+                <label for="link">Link:</label>
+                <input type="url" id="link" name="link" required><br>
+                
+                <label for="image">Image URL:</label>
+                <input type="url" id="image" name="image"><br>
+                
+                <label for="iframe">Iframe URL:</label>
+                <input type="url" id="iframe" name="iframe"><br>
+                
+                <label for="alt">Alt Text:</label>
+                <input type="text" id="alt" name="alt"><br>
+                
+                <button type="submit">Save Project</button>
+            </form>
+        </section>
+        
+        <section>
+            <h2>Projects</h2>
+            <button id="load-local">Load Projects from Local Storage</button>
+            <div id="project-list"></div>
+        </section>
+    </main>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Alex's Portfolio. All rights reserved.</p>
+    </footer>
+</body>
+</html>
