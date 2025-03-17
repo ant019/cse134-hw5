@@ -1,0 +1,23 @@
+[
+    {
+        "title": "CSE 110 Pantry Pal",
+        "image": "media/pantrypallogin.png",
+        "alt": "Pantry Pal Log in page",
+        "description": "This project involved using OpenAI's APIs for GPT, DALLE, and Whisper to generate recipes for users when they prompted the application with a list of ingredients.",
+        "link": "https://github.com/ucsd-cse110-fa23/cse-110-project-team-17"
+    },
+    {
+        "title": "CSE 158R Recommender Systems Project",
+        "iframe": "media/Assignment2WriteUp.pdf",
+        "alt": "Recommender Systems Project",
+        "description": "A recommender systems project where we implemented and finetuned our own recommender system models and compared them to prebuilt models from Python libraries such as Tensorflow and Surprise.",
+        "link": "https://github.com/AZA-2003/CSE158-A2"
+    },
+    {
+        "title": "COGS 108 Data Science Project",
+        "iframe": "media/FinalProject_Group124_WI24.pdf",
+        "alt": "Data Science Project",
+        "description": "This project focused on applying data science techniques to measure and predict student satisfaction with a course using data scraped from CAPES.",
+        "link": "https://github.com/COGS108/Group124_WI24"
+    }
+]
