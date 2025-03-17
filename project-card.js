@@ -1,42 +1,28 @@
 class ProjectCard extends HTMLElement {
+    static get observedAttributes() {
+        return ['title', 'description', 'link', 'image', 'iframe', 'alt'];
+    }
+
     constructor() {
         super();
-        const shadow = this.attachShadow({ mode: 'open' });
+        this.shadow = this.attachShadow({ mode: 'open' });
 
-        const card = document.createElement('div');
-        card.classList.add('card');
+        this.card = document.createElement('div');
+        this.card.classList.add('card');
 
-        const title = document.createElement('h2');
-        title.textContent = this.getAttribute('title');
-        card.appendChild(title);
+        this.titleElement = document.createElement('h2');
+        this.card.appendChild(this.titleElement);
 
-        const mediaContainer = document.createElement('div');
-        mediaContainer.classList.add('media-container');
-        if (this.hasAttribute('iframe')) {
-            const iframe = document.createElement('iframe');
-            iframe.src = this.getAttribute('iframe');
-            iframe.width = "100%";
-            iframe.height = "300px";
-            iframe.setAttribute('frameborder', '0');
-            mediaContainer.appendChild(iframe);
-        } else if (this.hasAttribute('image')) {
-            const picture = document.createElement('picture');
-            const img = document.createElement('img');
-            img.src = this.getAttribute('image');
-            img.alt = this.getAttribute('alt');
-            picture.appendChild(img);
-            mediaContainer.appendChild(picture);
-        }
-        card.appendChild(mediaContainer);
+        this.mediaContainer = document.createElement('div');
+        this.mediaContainer.classList.add('media-container');
+        this.card.appendChild(this.mediaContainer);
 
-        const description = document.createElement('p');
-        description.textContent = this.getAttribute('description');
-        card.appendChild(description);
+        this.descriptionElement = document.createElement('p');
+        this.card.appendChild(this.descriptionElement);
 
-        const link = document.createElement('a');
-        link.href = this.getAttribute('link');
-        link.textContent = 'Read more';
-        card.appendChild(link);
+        this.linkElement = document.createElement('a');
+        this.linkElement.textContent = 'Read more';
+        this.card.appendChild(this.linkElement);
 
         const style = document.createElement('style');
         style.textContent = `
@@ -69,8 +55,30 @@ class ProjectCard extends HTMLElement {
                 margin-top: 0.5rem;
             }
         `;
-        shadow.appendChild(style);
-        shadow.appendChild(card);
+        this.shadow.appendChild(style);
+        this.shadow.appendChild(this.card);
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (name === 'title') this.titleElement.textContent = newValue || 'Untitled Project';
+        if (name === 'description') this.descriptionElement.textContent = newValue || 'No description provided';
+        if (name === 'link') this.linkElement.href = newValue || '#';
+
+        if (name === 'image' || name === 'iframe') {
+            this.mediaContainer.innerHTML = ''; 
+            if (name === 'image') {
+                const img = document.createElement('img');
+                img.src = newValue;
+                img.alt = this.getAttribute('alt') || 'Project Image';
+                this.mediaContainer.appendChild(img);
+            } else if (name === 'iframe') {
+                const iframe = document.createElement('iframe');
+                iframe.src = newValue;
+                iframe.width = "100%";
+                iframe.height = "300px";
+                this.mediaContainer.appendChild(iframe);
+            }
+        }
     }
 }
 

@@ -1,4 +1,4 @@
-[
+{"projects": [
     {
         "title": "CSE 110 Pantry Pal",
         "image": "media/pantrypallogin.png",
@@ -20,4 +20,4 @@
         "description": "This project focused on applying data science techniques to measure and predict student satisfaction with a course using data scraped from CAPES.",
         "link": "https://github.com/COGS108/Group124_WI24"
     }
-]
+]}
